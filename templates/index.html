@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotive Muse</title>
+</head>
+<body>
+    <h2>Emotive Muse</h2>
+    <p>Type one emotion from these: <strong>happy, sad, calm, angry</strong></p>
+    <form method="POST">
+        <input name="emotion" type="text" required />
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if result %}
+        <h3>AI Generated Quote:</h3>
+        <p>{{ result['quote'] }}</p>
+
+        <h3>AI Suggested Song:</h3>
+        <p>{{ result['song'] }}</p>
+
+        <h3>Predefined Image:</h3>
+        <img src="{{ result['image'] }}" width="300" height="200" />
+
+        <h3>Predefined Colors:</h3>
+        <div style="display:flex; gap:10px;">
+          {% for color in result['colors'] %}
+            <div style="width:50px;height:50px;background:{{ color }}"></div>
+          {% endfor %}
+        </div>
+
+        <h3>Predefined Song Link:</h3>
+        <a href="{{ result['youtube'] }}" target="_blank">Listen on YouTube</a>
+    {% endif %}
+</body>
+</html>
